@@ -4,7 +4,7 @@ S3BUCKET ?= pahud-tmp-nrt
 LAMBDA_REGION ?= ap-northeast-1
 LAMBDA_FUNC_NAME ?= headless-chromium-layer-test-func
 LAMBDA_FUNC_DESC ?= headless-chromium-layer-test-func
-LAMBDA_ROLE_ARN ?= arn:aws:iam::903779448426:role/service-role/LambdaDefaultRole
+LAMBDA_ROLE_ARN ?= arn:aws:iam::903779448426:role/LambdaRoleWithS3Upload
 
 build:
 	@bash build.sh
@@ -36,6 +36,7 @@ create-func: func-zip
 	--runtime provided \
 	--role  $(LAMBDA_ROLE_ARN) \
 	--timeout 30 \
+	--memory-size 1536 \
 	--layers $(LAMBDA_LAYERS) \
 	--handler main \
 	--zip-file fileb://func-bundle.zip 
@@ -51,7 +52,7 @@ layer-all: build layer-upload layer-publish
 
 invoke:
 	@aws --region $(LAMBDA_REGION) lambda invoke --function-name $(LAMBDA_FUNC_NAME)  \
-	--payload "" lambda.output --log-type Tail | jq -r .LogResult | base64 -d	
+	--payload "" lambda.output --log-type Tail | jq -r .LogResult | base64 -D
 	
 add-layer-version-permission:
 	@aws --region $(LAMBDA_REGION) lambda add-layer-version-permission \
