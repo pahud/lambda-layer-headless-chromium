@@ -1,10 +1,10 @@
-LAYER_NAME ?= headless-chromium-layer
-LAYER_DESC ?=headless-chromium-layer
-S3BUCKET ?= pahud-tmp-nrt
+LAYER_NAME ?= headless-chromium-layer2
+LAYER_DESC ?=headless-chromium-layer2
+S3BUCKET ?= pahud-me-tmp-nrt
 LAMBDA_REGION ?= ap-northeast-1
-LAMBDA_FUNC_NAME ?= headless-chromium-layer-test-func
-LAMBDA_FUNC_DESC ?= headless-chromium-layer-test-func
-LAMBDA_ROLE_ARN ?= arn:aws:iam::903779448426:role/LambdaRoleWithS3Upload
+LAMBDA_FUNC_NAME ?= headless-chromium-layer-test-func2
+LAMBDA_FUNC_DESC ?= headless-chromium-layer-test-func2
+LAMBDA_ROLE_ARN ?= arn:aws:iam::643758503024:role/LambdaRoleWithS3Upload
 
 build:
 	@bash build.sh
@@ -52,7 +52,7 @@ layer-all: build layer-upload layer-publish
 
 invoke:
 	@aws --region $(LAMBDA_REGION) lambda invoke --function-name $(LAMBDA_FUNC_NAME)  \
-	--payload "" lambda.output --log-type Tail | jq -r .LogResult | base64 -D
+	--payload "" lambda.output --log-type Tail | jq -r .LogResult | base64 -d
 	
 add-layer-version-permission:
 	@aws --region $(LAMBDA_REGION) lambda add-layer-version-permission \
@@ -68,7 +68,9 @@ all: build layer-upload layer-publish
 clean:
 	rm -rf awscli-bundle* layer layer.zip func-bundle.zip lambda.output
 	
-clean-all: clean
+delete-func:
 	@aws --region $(LAMBDA_REGION) lambda delete-function --function-name $(LAMBDA_FUNC_NAME)
 	
+clean-all: clean delete-func
+
 	

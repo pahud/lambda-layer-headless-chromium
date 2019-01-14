@@ -15,6 +15,7 @@ do
    cp .fonts-tmp/NotoSansCJKtc-${i}.otf .fonts/
 done
 rm -rf NotoSansCJKtc-hinted* .fonts-tmp
+chmod +r .fonts/*
 
 # pack extra fonts in the bundle
 cp -a .fonts ./layer/headless-chromium/
