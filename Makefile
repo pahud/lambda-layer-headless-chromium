@@ -1,9 +1,9 @@
-LAYER_NAME ?= headless-chromium-layer2
-LAYER_DESC ?=headless-chromium-layer2
+LAYER_NAME ?= headless-chromium-layer
+LAYER_DESC ?=headless-chromium-layer
 S3BUCKET ?= pahud-me-tmp-nrt
 LAMBDA_REGION ?= ap-northeast-1
-LAMBDA_FUNC_NAME ?= headless-chromium-layer-test-func2
-LAMBDA_FUNC_DESC ?= headless-chromium-layer-test-func2
+LAMBDA_FUNC_NAME ?= headless-chromium-layer-test-func
+LAMBDA_FUNC_DESC ?= headless-chromium-layer-test-func
 LAMBDA_ROLE_ARN ?= arn:aws:iam::643758503024:role/LambdaRoleWithS3Upload
 
 build:
