@@ -24,8 +24,7 @@ $ make build
 
 # upload and publish your layer
 ```
-$ make layer-upload
-$ make layer-publish
+$ make layer-upload layer-publish
 ```
 
 # create your main handler
