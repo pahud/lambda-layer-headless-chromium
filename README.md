@@ -121,3 +121,10 @@ REPORT RequestId: 6b554111-127a-11e9-b3d3-0317b2c3587b  Init Duration: 44.76 ms 
 You will get a presigned URL of the screenshot in the `RESPONSE` like this:
 
 ![](https://pbs.twimg.com/media/Dv_35vrU0AAGuTP.jpg)
+
+# SC JP and KR support
+![](screenshot-cn.png)
+![](screenshot-jp.png)
+![](screenshot-kr.png)
+
+
