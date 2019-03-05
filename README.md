@@ -2,6 +2,8 @@
 AWS Lambda Layer for [headless chromium](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md) with [Noto](https://www.google.com/get/noto/) CJK TC font support.
 
 # build the layer zip
+
+- Make sure your local environment has installed `docker` and the docker daemon is running otherwise you may encounter `Is docker running?` error(see [#4](https://github.com/pahud/lambda-layer-headless-chromium/issues/4))
 ```
 $ make build
 ```
