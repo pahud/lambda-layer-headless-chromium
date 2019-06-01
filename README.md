@@ -26,7 +26,7 @@ $ make build
 
 # upload and publish your layer
 ```
-$ make layer-upload layer-publish
+$ make sam-layer-package sam-layer-deploy
 ```
 
 # create your main handler
@@ -34,50 +34,18 @@ edit `main.sh` or check sampe [here](main.sh)
 
 # create your lambda function bundle with the layer
 
+```bash
+$ LayerArn={YOUR_LAYER_ARN} make sam-package sam-deploy
 ```
-LAMBDA_LAYERS="AWS_CLI_LAYER_ARN YOUR_LAMBDA_LAYER_ARN" make ceate-func
-```
+
 e.g.
+```bash
+LAMBDA_LAYERS="arn:aws:lambda:ap-northeast-1:903779448426:layer:headless-chromium-layer:4" \
+make sam-package sam-deploy
 ```
-LAMBDA_LAYERS="arn:aws:lambda:ap-northeast-1:903779448426:layer:awscli-layer:15 \
-arn:aws:lambda:ap-northeast-1:903779448426:layer:headless-chromium-layer:4" \
-make create-func
-```
+Behind the scene, `SAM` will install [aws-lambda-layer-awscli](https://github.com/aws-samples/aws-lambda-layer-awscli) for you from SAR and package/deploy your Lambda function with your headless-chromium layer.
 
 
-response
-```
-{
-    "Layers": [
-        {
-            "CodeSize": 11339318,
-            "Arn": "arn:aws:lambda:ap-northeast-1:903779448426:layer:awscli-layer:15"
-        },
-        {
-            "CodeSize": 87662979,
-            "Arn": "arn:aws:lambda:ap-northeast-1:903779448426:layer:headless-chromium-layer:4"
-        }
-    ],
-    "FunctionName": "headless-chromium-layer-test-func2",
-    "LastModified": "2019-01-07T12:43:27.880+0000",
-    "RevisionId": "61b4164e-9bde-4c79-995e-f5baf9006279",
-    "MemorySize": 1536,
-    "Version": "$LATEST",
-    "Role": "arn:aws:iam::903779448426:role/service-role/LambdaDefaultRole",
-    "Timeout": 30,
-    "Runtime": "provided",
-    "TracingConfig": {
-        "Mode": "PassThrough"
-    },
-    "CodeSha256": "TCPPMfDY3QSc6Nn0f57eTgYHRpFBA/MFatamwAbG5dQ=",
-    "Description": "headless-chromium-layer-test-func",
-    "CodeSize": 1243,
-    "FunctionArn": "arn:aws:lambda:ap-northeast-1:903779448426:function:headless-chromium-layer-test-func2",
-    "Handler": "main"
-}
-```
-
-(please note: you need `2` layers for this function. The 1st one is [awscli layer](https://github.com/pahud/lambda-layer-awscli) and the 2nd one is the headless chromium layer you just created and published previously.)
 
 # test and validation
 

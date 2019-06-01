@@ -1,0 +1,11 @@
+.zip
+func.d
+layer
+layer.zip
+packaged.yaml
+sam-layer-packaged.yaml
+*.output
+*.png
+*.zip
+custom.mk
+.font*
