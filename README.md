@@ -1,7 +1,36 @@
 # lambda-layer-headless-chromium
 AWS Lambda Layer for [headless chromium](https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md) with [Noto](https://www.google.com/get/noto/) CJK TC font support.
 
-# build the layer zip
+Two options to install this layer:
+
+
+# Option 1: Deploy from SAR Console
+
+|        Region        |                    Click and Deploy                     | 
+| :----------------: | :----------------------------------------------------------: | 
+|  **ap-northeast-1**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/ap-northeast-1/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **ap-northeast-2**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/ap-northeast-2/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **ap-northeast-3**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/ap-northeast-3/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **ap-south-1**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/ap-south-1/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **ap-southeast-1**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/ap-southeast-1/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **ap-southeast-2**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/ap-southeast-2/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **ca-central-1**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/ca-central-1/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **eu-central-1**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/eu-central-1/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **eu-north-1**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/eu-north-1/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **eu-west-1**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/eu-west-1/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **eu-west-2**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/eu-west-2/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **eu-west-3**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/eu-west-3/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **sa-east-1**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/sa-east-1/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **us-east-1**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/us-east-1/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **us-east-2**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/us-east-2/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **us-west-1**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/us-west-1/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+|  **us-west-2**  |[![](https://img.shields.io/badge/SAR-Deploy%20Now-yellow.svg)](https://deploy.serverlessrepo.app/us-west-2/?app=arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-headless-chromium)|
+
+# Option 2: Build from Scratch
+
+
+
+## build the layer zip
 
 - Make sure your local environment has installed `docker` and the docker daemon is running otherwise you may encounter `Is docker running?` error(see [#4](https://github.com/pahud/lambda-layer-headless-chromium/issues/4))
 ```
@@ -10,7 +39,7 @@ $ make build
 **this will create `layer.zip` in your current directory**
 
 
-# edit Makefile
+## edit Makefile
 
 
 | Name                 | Description                                                  | required to update |
@@ -24,7 +53,7 @@ $ make build
 | **LAMBDA_ROLE_ARN**  | Lambda IAM role ARN                                          | YES                |
 
 
-# upload and publish your layer
+## upload and publish your layer
 ```
 $ make sam-layer-package sam-layer-deploy
 ```
@@ -32,7 +61,7 @@ $ make sam-layer-package sam-layer-deploy
 # create your main handler
 edit `main.sh` or check sampe [here](main.sh)
 
-# create your lambda function bundle with the layer
+## create your lambda function bundle with the layer
 
 ```bash
 $ LayerArn={YOUR_LAYER_ARN} make sam-package sam-deploy
@@ -47,7 +76,7 @@ Behind the scene, `SAM` will install [aws-lambda-layer-awscli](https://github.co
 
 
 
-# test and validation
+## test and validation
 
 ```
 $ make invoke

@@ -10,7 +10,8 @@ chmod +x ./layer/headless-chromium/headless-chromium
 mkdir .fonts .fonts-tmp
 wget https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKtc-hinted.zip
 unzip NotoSansCJKtc-hinted.zip -d .fonts-tmp
-for i in Bold Medium Regular
+# for i in Bold Medium Regular
+for i in Regular
 do
    cp .fonts-tmp/NotoSansCJKtc-${i}.otf .fonts/
 done

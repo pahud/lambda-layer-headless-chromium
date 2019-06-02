@@ -190,7 +190,7 @@ func-prep:
 all: build layer-upload layer-publish
 	
 clean:
-	rm -rf awscli-bundle* layer layer.zip func-bundle.zip lambda.output
+	rm -rf awscli-bundle* layer layer.zip func-bundle.zip lambda.output .font*
 	
 delete-func:
 	@aws --region $(LAMBDA_REGION) lambda delete-function --function-name $(LAMBDA_FUNC_NAME)
